@@ -1,0 +1,93 @@
+{
+  "agent_id": "1d398611-340d-44dd-a574-6e8683ff4a33",
+  "name": "Onboarding Buddy",
+  "mode": "skills",
+  "deploy_status": "draft",
+  "chat_model": null,
+  "system_prompt": "",
+  "scratchpad": "",
+  "soul": {
+    "persona": "",
+    "brand": {},
+    "behavior_rules": [],
+    "welcome_message": ""
+  },
+  "skills": [
+    {
+      "skill_id": "current-time",
+      "name": "Time & Date Utilities",
+      "description": "Get current time, convert timezones, calculate date differences, and more",
+      "skill_type": "tool",
+      "category": "general",
+      "catalog_type": "core",
+      "config": {}
+    },
+    {
+      "skill_id": "fetch-url",
+      "name": "Fetch URL",
+      "description": "Fetch and extract content from a web URL \u2014 articles, documentation, links, or API responses",
+      "skill_type": "tool",
+      "category": "general",
+      "catalog_type": "core",
+      "config": {}
+    },
+    {
+      "skill_id": "memory",
+      "name": "Agent Memory",
+      "description": "Remember and recall facts about users and context across conversations, and manage your persistent scratchpad/brain",
+      "skill_type": "tool",
+      "category": "general",
+      "catalog_type": "core",
+      "config": {}
+    },
+    {
+      "skill_id": "rest-api",
+      "name": "REST API Call",
+      "description": "Make HTTP requests to external APIs \u2014 GET, POST, PUT, PATCH, DELETE",
+      "skill_type": "tool",
+      "category": "general",
+      "catalog_type": "core",
+      "config": {}
+    },
+    {
+      "skill_id": "search-kb",
+      "name": "Knowledge Base",
+      "description": "Search the agent's uploaded documents and knowledge base",
+      "skill_type": "tool",
+      "category": "general",
+      "catalog_type": "core",
+      "config": {}
+    },
+    {
+      "skill_id": "text-to-speech",
+      "name": "Text to Speech",
+      "description": "Convert text to speech audio file using gTTS (free, no API key needed)",
+      "skill_type": "sandbox",
+      "category": "voice",
+      "catalog_type": "core",
+      "config": {}
+    },
+    {
+      "skill_id": "web-search",
+      "name": "Web Search",
+      "description": "Search the web for current information, news, and answers",
+      "skill_type": "tool",
+      "category": "general",
+      "catalog_type": "core",
+      "config": {}
+    }
+  ],
+  "gateways": [
+    {
+      "platform": "facebook-messenger",
+      "name": "Facebook Messenger Gateway",
+      "is_active": true
+    }
+  ],
+  "routines": [],
+  "triggers": [],
+  "mcp_connections": [],
+  "memories": [],
+  "knowledge_base": [],
+  "tools_config": {}
+}
