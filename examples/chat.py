@@ -11,7 +11,7 @@ client = OpenAI(
 
 # First message — starts a new thread
 response = client.chat.completions.create(
-    model="gemini/gemini-2.0-flash",
+    model="gemini/gemini-2.5-flash",
     messages=[{"role": "user", "content": "Hello"}],
 )
 print(response.choices[0].message.content)
@@ -19,7 +19,7 @@ print(response.choices[0].message.content)
 # Continue the conversation using thread_id
 thread_id = response.thread_id
 response = client.chat.completions.create(
-    model="gemini/gemini-2.0-flash",
+    model="gemini/gemini-2.5-flash",
     messages=[{"role": "user", "content": "Follow up question"}],
     extra_body={"thread_id": thread_id},
 )
@@ -27,7 +27,7 @@ print(response.choices[0].message.content)
 
 # Streaming example
 stream = client.chat.completions.create(
-    model="gemini/gemini-2.0-flash",
+    model="gemini/gemini-2.5-flash",
     messages=[{"role": "user", "content": "Tell me about AI agents"}],
     stream=True,
 )

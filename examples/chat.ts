@@ -13,7 +13,7 @@ const client = new OpenAI({
 async function main() {
   // First message — starts a new thread
   const response = await client.chat.completions.create({
-    model: "gemini/gemini-2.0-flash",
+    model: "gemini/gemini-2.5-flash",
     messages: [{ role: "user", content: "Hello" }],
   });
   console.log(response.choices[0].message.content);
@@ -21,7 +21,7 @@ async function main() {
   // Continue the conversation using thread_id
   const threadId = (response as any).thread_id;
   const followUp = await client.chat.completions.create({
-    model: "gemini/gemini-2.0-flash",
+    model: "gemini/gemini-2.5-flash",
     messages: [{ role: "user", content: "Follow up question" }],
     // @ts-ignore — custom field
     thread_id: threadId,

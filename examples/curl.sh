@@ -6,10 +6,10 @@
 curl -X POST https://oya.ai/api/v1/chat/completions \
   -H "Authorization: Bearer a2a_your_key_here" \
   -H "Content-Type: application/json" \
-  -d '{"model":"gemini/gemini-2.0-flash","messages":[{"role":"user","content":"Hello"}]}'
+  -d '{"model":"gemini/gemini-2.5-flash","messages":[{"role":"user","content":"Hello"}]}'
 
 # Continue a conversation using thread_id from the first response:
 curl -X POST https://oya.ai/api/v1/chat/completions \
   -H "Authorization: Bearer a2a_your_key_here" \
   -H "Content-Type: application/json" \
-  -d '{"model":"gemini/gemini-2.0-flash","messages":[{"role":"user","content":"Follow up question"}],"thread_id":"thread_id_from_previous_response"}'
+  -d '{"model":"gemini/gemini-2.5-flash","messages":[{"role":"user","content":"Follow up question"}],"thread_id":"thread_id_from_previous_response"}'
