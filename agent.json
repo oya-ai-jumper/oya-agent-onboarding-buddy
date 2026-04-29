@@ -82,6 +82,11 @@
       "platform": "facebook-messenger",
       "name": "Facebook Messenger Gateway",
       "is_active": true
+    },
+    {
+      "platform": "slack",
+      "name": "Slack \u2014 Jumper Media",
+      "is_active": true
     }
   ],
   "routines": [],
