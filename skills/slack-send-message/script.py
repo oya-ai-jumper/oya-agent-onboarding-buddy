@@ -66,6 +66,32 @@ def _inline(text: str) -> str:
     return text
 
 
+_allowed = [c.strip() for c in os.environ.get("SLACK_ALLOWED_CHANNELS", "").split(",") if c.strip()]
+_allowed_names = [n.strip() for n in os.environ.get("SLACK_ALLOWED_CHANNEL_NAMES", "").split(",") if n.strip()]
+
+
+def _resolve_channel(channel: str) -> tuple[str, str | None]:
+    """Returns (canonical_channel_id, error). Accepts the raw arg as an ID,
+    a name, or a `#name` and matches against either allowlist. When a name
+    is given and the position maps to a known ID, the ID is returned so the
+    Slack call always uses the canonical form."""
+    raw = (channel or "").strip()
+    if not _allowed:
+        return raw, None
+    bare = raw.lstrip("#").strip()
+    if raw in _allowed or bare in _allowed:
+        return bare if bare in _allowed else raw, None
+    if bare in _allowed_names:
+        idx = _allowed_names.index(bare)
+        return _allowed[idx] if idx < len(_allowed) else bare, None
+    pretty = ", ".join(f"#{n}" for n in _allowed_names) or ", ".join(_allowed)
+    return raw, (
+        f"Channel {channel} is not in this agent's allowed Slack channels "
+        f"({pretty}). Refusing. Ask the user to update the gateway "
+        f"configuration if access to this channel is intended."
+    )
+
+
 try:
     token = os.environ["SLACK_BOT_TOKEN"]
     inp = json.loads(os.environ.get("INPUT_JSON", "{}"))
@@ -75,6 +101,10 @@ try:
     if not channel or not text:
         print(json.dumps({"error": "channel and text are required"}))
     else:
+        channel, blocked = _resolve_channel(channel)
+        if blocked is not None:
+            print(json.dumps({"error": blocked}))
+            raise SystemExit(0)
         slack_text = _md_to_slack(text)
         payload = {"channel": channel, "text": slack_text}
         if thread_ts:
